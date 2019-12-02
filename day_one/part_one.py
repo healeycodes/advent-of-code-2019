@@ -6,7 +6,7 @@ with open(filename) as file:
     for line in file.read().splitlines():
         mass = int(line)
         
-        # calculate fuel (part one)
+        # calculate fuel
         fuel = mass // 3 - 2
         total_fuel += fuel
 

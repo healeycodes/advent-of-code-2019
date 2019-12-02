@@ -6,11 +6,11 @@ with open(filename) as file:
     for line in file.read().splitlines():
         mass = int(line)
         
-        # calculate fuel (part one)
+        # calculate fuel
         fuel = mass // 3 - 2
         total_fuel += fuel
 
-        # keep calculating fuel for the fuel until zero (part two)
+        # keep calculating fuel for the fuel until zero
         while fuel > 0:
             fuel = max((0, fuel // 3 - 2))
             total_fuel += fuel
