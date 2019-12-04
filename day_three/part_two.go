@@ -8,6 +8,22 @@ import (
 	"strings"
 )
 
+func main() {
+	filename := os.Args[1]
+	input, err := ioutil.ReadFile(filename)
+	if err != nil {
+		panic("Problem reading file :(")
+	}
+	paths := strings.Split(string(input), "\n")
+	firstPath := getPoints(strings.Split(paths[0], ","))
+	secondPath := getPoints(strings.Split(paths[1], ","))
+
+	signalDelays := getSignalDelays(firstPath, secondPath)
+	min := getMinimum(signalDelays)
+
+	fmt.Println(min)
+}
+
 func getPoints(wirePath []string) map[string][]int {
 	dir := 0
 	travel := 0
@@ -61,20 +77,4 @@ func getMinimum(list []int) int {
 		}
 	}
 	return m
-}
-
-func main() {
-	filename := os.Args[1]
-	input, err := ioutil.ReadFile(filename)
-	if err != nil {
-		panic("Problem reading file :(")
-	}
-	paths := strings.Split(string(input), "\n")
-	firstPath := getPoints(strings.Split(paths[0], ","))
-	secondPath := getPoints(strings.Split(paths[1], ","))
-
-	signalDelays := getSignalDelays(firstPath, secondPath)
-	min := getMinimum(signalDelays)
-
-	fmt.Println(min)
 }
