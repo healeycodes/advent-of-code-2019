@@ -40,6 +40,27 @@ func getPoints(wirePath []string) map[string][]int {
 	return points
 }
 
+func getManhattenDistances(pathA map[string][]int, pathB map[string][]int) []int {
+	distances := []int{}
+	for point, coords := range pathA {
+		if _, ok := pathB[point]; ok {
+			man := math.Abs(float64(coords[0])-0) + math.Abs(0-float64(coords[1]))
+			distances = append(distances, int(man))
+		}
+	}
+	return distances
+}
+
+func getMinimum(list []int) int {
+	m := 0
+	for i, e := range list {
+		if i == 0 || e < m {
+			m = e
+		}
+	}
+	return m
+}
+
 func main() {
 	filename := os.Args[1]
 	input, err := ioutil.ReadFile(filename)
@@ -50,20 +71,8 @@ func main() {
 	firstPath := getPoints(strings.Split(paths[0], ","))
 	secondPath := getPoints(strings.Split(paths[1], ","))
 
-	manhattenDistances := []int{}
-	for point, coords := range firstPath {
-		if _, ok := secondPath[point]; ok {
-			man := math.Abs(float64(coords[0])-0) + math.Abs(0-float64(coords[1]))
-			manhattenDistances = append(manhattenDistances, int(man))
-		}
-	}
+	manhattenDistances := getManhattenDistances(firstPath, secondPath)
+	min := getMinimum(manhattenDistances)
 
-	// Find minimum
-	m := 0
-	for i, e := range manhattenDistances {
-		if i == 0 || e < m {
-			m = e
-		}
-	}
-	fmt.Println(m)
+	fmt.Println(min)
 }

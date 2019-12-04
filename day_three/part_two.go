@@ -43,6 +43,26 @@ func getPoints(wirePath []string) map[string][]int {
 	return points
 }
 
+func getSignalDelays(pathA map[string][]int, pathB map[string][]int) []int {
+	delays := []int{}
+	for point, coords := range pathA {
+		if val, ok := pathB[point]; ok {
+			delays = append(delays, coords[2]+val[2])
+		}
+	}
+	return delays
+}
+
+func getMinimum(list []int) int {
+	m := 0
+	for i, e := range list {
+		if i == 0 || e < m {
+			m = e
+		}
+	}
+	return m
+}
+
 func main() {
 	filename := os.Args[1]
 	input, err := ioutil.ReadFile(filename)
@@ -53,19 +73,8 @@ func main() {
 	firstPath := getPoints(strings.Split(paths[0], ","))
 	secondPath := getPoints(strings.Split(paths[1], ","))
 
-	signalDelays := []int{}
-	for point, coords := range firstPath {
-		if val, ok := secondPath[point]; ok {
-			signalDelays = append(signalDelays, coords[2]+val[2])
-		}
-	}
+	signalDelays := getSignalDelays(firstPath, secondPath)
+	min := getMinimum(signalDelays)
 
-	// Find minimum
-	s := 0
-	for i, e := range signalDelays {
-		if i == 0 || e < s {
-			s = e
-		}
-	}
-	fmt.Println(s)
+	fmt.Println(min)
 }
