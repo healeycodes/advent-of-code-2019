@@ -48,9 +48,7 @@ local function int_codes(instructions, input)
             i = i + 2
         end
         -- halt!
-        if op_code:sub(4, 5) == '99' then
-            return
-        end
+        if op_code:sub(4, 5) == '99' then return end
         -- jump-if-true
         if op_code:sub(5, 5) == '5' then
             if x ~= 0 then

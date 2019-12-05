@@ -1,5 +1,4 @@
 -- this is the first program I have ever written in Lua!
-
 local filename = arg[1]
 
 -- left pad a (s)tring to (l)ength by (c)har
@@ -11,12 +10,13 @@ local function int_codes(instructions, input)
     while i < #instructions do
         local op_code = lpad(tostring(instructions[i]), 5, '0')
         -- are parameters in position or immediate mode?
-        local c = op_code:sub(3,3) == '0'
-        local b = op_code:sub(2,2) == '0'
-        local a = op_code:sub(1,1) == '0'
+        local c = op_code:sub(3, 3) == '0'
+        local b = op_code:sub(2, 2) == '0'
+        local a = op_code:sub(1, 1) == '0'
         -- parameters
         local x = nil
         local y = nil
+        local z = instructions[i + 3] -- writing will always be positional
         if c then
             x = instructions[instructions[i + 1] + 1]
         else
@@ -28,27 +28,27 @@ local function int_codes(instructions, input)
             y = instructions[i + 2]
         end
         -- addition
-        if op_code:sub(5,5) == '1' then
-            instructions[instructions[i + 3] + 1] = x + y
+        if op_code:sub(5, 5) == '1' then
+            instructions[z + 1] = x + y
             i = i + 4
         end
         -- multiplication
-        if op_code:sub(5,5) == '2' then
-            instructions[instructions[i + 3] + 1] = x * y
+        if op_code:sub(5, 5) == '2' then
+            instructions[z + 1] = x * y
             i = i + 4
         end
         -- input
-        if op_code:sub(5,5) == '3' then
+        if op_code:sub(5, 5) == '3' then
             instructions[instructions[i + 1] + 1] = input
             i = i + 2
         end
         -- output
-        if op_code:sub(5,5) == '4' then
+        if op_code:sub(5, 5) == '4' then
             print('output: ' .. tostring(x))
             i = i + 2
         end
         -- halt!
-        if op_code:sub(4,5) == '99' then
+        if op_code:sub(4, 5) == '99' then
             print('halting')
             return
         end
