@@ -8,4 +8,4 @@ I'm not shooting for super optimized solutions. As long as they finish in under 
 
 <br>
 
-Languages used so far: Python, JavaScript, Go, PHP
+Languages used so far: Python, JavaScript, Go, PHP, Lua
