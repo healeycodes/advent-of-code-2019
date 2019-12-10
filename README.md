@@ -8,6 +8,26 @@ I'm not shooting for super optimized solutions. As long as they finish in under 
 
 <br>
 
-Languages used so far: Python, JavaScript, Go, PHP, Lua, Julia, Ruby
+Puzzles take their input as an arg in the format `<puzzle> <input>` e.g. `ruby ./part_two.rb ./input.txt`
 
-Puzzles can be run in the format `<puzzle> <input>` e.g. `ruby ./part_two.rb ./input.txt`
+<br>
+
+Languages used so far:
+
+1 - Python
+
+2 JavaScript
+
+3 - Go
+
+4 - PHP
+
+5 - Lua
+
+6 - Julia
+
+7 - ?
+
+8 - Ruby
+
+
