@@ -2,7 +2,7 @@
 
 🎅
 
-I'm aiming to use a different programming language for each day.
+I'm using this year's event to try out different languages :)
 
 I'm not shooting for super optimized solutions. As long as they finish in under one second, I'm happy.
 
@@ -16,7 +16,7 @@ Languages used so far:
 
 1 - Python
 
-2 JavaScript
+2 - JavaScript
 
 3 - Go
 
@@ -25,8 +25,6 @@ Languages used so far:
 5 - Lua
 
 6 - Julia
-
-7 - ?
 
 8 - Ruby
 
